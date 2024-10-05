@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-image: url('UL_8-2000x1200.JPEG');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        h1, h2, h3 {
+            color: black;
+        }
+        .section {
+            margin-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .contact-info, .skills, .experience, .education {
+            margin-bottom: 10px;
+        }
+        .item {
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+        function downloadCV() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const linkedIn = document.getElementById("linkedin").value;
+            const profile = document.getElementById("profile").value;
+            const skills = Array.from(document.querySelectorAll(".skill")).map(input => input.value).join(", ");
+            const experiences = Array.from(document.querySelectorAll(".experience textarea")).map(textarea => textarea.value).join("\n");
+            const education = Array.from(document.querySelectorAll(".education textarea")).map(textarea => textarea.value).join("\n");
+            
+            const cvContent = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nLinkedIn: ${linkedIn}\n\nProfile:\n${profile}\n\nSkills:\n${skills}\n\nExperience:\n${experiences}\n\nEducation:\n${education}`;
+            const blob = new Blob([cvContent], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "CV.txt";
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</head>
+<body>
+
+    <h1 id="name">KGAOGELO MILTON MAMPHEKGO</h1>
+    <div class="contact-info">
+        <p>Email: <input type="text" id="email" value="snaildetail@gmail.com"></p>
+        <p>Phone: <input type="text" id="phone" value="0725187605"></p>
+        <p>LinkedIn: <input type="text" id="linkedin" value="linkedin.com/in/kgaogeloMamphekgo"></p>
+    </div>
+
+    <div class="section">
+        <h2>Profile</h2>
+        <p><textarea id="profile" rows="4" cols="50">Write a brief summary about yourself here...</textarea></p>
+    </div>
+
+    <div class="section">
+        <h2>Skills</h2>
+        <div class="skills">
+            <p class="item"><input type="text" class="skill" value="Skill 1"></p>
+            <p class="item"><input type="text" class="skill" value="Skill 2"></p>
+            <p class="item"><input type="text" class="skill" value="Skill 3"></p>
+            <p class="item"><input type="text" class="skill" value="Skill 4"></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Experience</h2>
+        <div class="experience">
+            <p class="item">
+                <strong>Job Title, Company Name</strong> (Start Date - End Date)
+                <br><textarea rows="3" cols="50">Describe your responsibilities and achievements...</textarea>
+            </p>
+            <p class="item">
+                <strong>Job Title, Company Name</strong> (Start Date - End Date)
+                <br><textarea rows="3" cols="50">Describe your responsibilities and achievements...</textarea>
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Education</h2>
+        <div class="education">
+            <p class="item">
+                <strong>Degree, Major</strong> - University Name (Graduation Year)
+                <br><textarea rows="2" cols="50">Additional details if necessary...</textarea>
+            </p>
+            <p class="item">
+                <strong>Degree, Major</strong> - University Name (Graduation Year)
+                <br><textarea rows="2" cols="50">Additional details if necessary...</textarea>
+            </p>
+        </div>
+    </div>
+
+    <p><a href="index.html">BACK TO BEGINNING</a></p>
+    <button onclick="downloadCV()">Download CV</button>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download CV</title>
+    <script>
+        function downloadCV() {
+            const cvContent = localStorage.getItem("cvContent");
+            const blob = new Blob([cvContent], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "CV.txt";
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Download Your CV</h1>
+    <p>Your CV will be ready to download!</p>
+    <button onclick="downloadCV()">Download CV</button>
+    <p><a href="page2.html">EDIT CV</a></p>
+</body>
+</html>
